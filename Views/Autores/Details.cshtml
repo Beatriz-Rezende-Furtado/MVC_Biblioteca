@@ -1,0 +1,53 @@
+@model Biblioteca.Models.Autor
+@{
+    ViewData["LayoutTipo"] = "internal";
+    var livros = ViewBag.LivrosDoAutor as List<Biblioteca.Models.Livro>;
+}
+
+<div class="top-banner top-banner-internal">
+    Conheça mais sobre o autor
+</div>
+
+<div class="title-bar title-bar-internal">
+    <span>@Model.Nome</span>
+</div>
+
+<div class="internal-area">
+    <div class="detail-layout">
+        <div class="author-photo">
+            @if (!string.IsNullOrEmpty(Model.FotoUrl))
+            {
+                <img src="@Model.FotoUrl" alt="Foto do autor @Model.Nome" />
+            }
+            else
+            {
+                <span>Foto<br />Não encontrada</span>
+            }
+        </div>
+
+        <div class="detail-text">
+            <p><strong>Data de nascimento:</strong> @Model.DataNascimento.ToString("dd/MM/yyyy")</p>
+            <p><strong>Biografia:</strong> @Model.Biografia</p>
+
+            <div class="related-books">
+                <p><strong>Livros relacionados:</strong></p>
+
+                @if (livros != null && livros.Any())
+                {
+                    <ul>
+                        @foreach (var livro in livros)
+                        {
+                            <li>
+                                <a asp-controller="Livros"
+                                   asp-action="Details"
+                                   asp-route-id="@livro.Id">
+                                    @livro.Titulo
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+﻿@model List<Biblioteca.Models.Livro>
+
+<div class="top-banner top-banner-home">
+    Bem-vindo à Biblioteca Virtual.<br />
+    Acesse nosso acervo no conforto da sua casa.
+</div>
+
+<div class="title-bar title-bar-home">
+    <span>Sessão de livros</span>
+</div>
+
+<div class="home-area">
+    <div class="books-grid">
+        @foreach (var livro in Model)
+        {
+            <div class="book-card">
+                <div class="cover-box">
+                    @if (!string.IsNullOrEmpty(livro.CapaUrl))
+                    {
+                        <img src="@livro.CapaUrl" alt="Capa do livro @livro.Titulo" />
+                    }
+                    else
+                    {
+                        <span>Imagem<br />Capa</span>
+                    }
+                </div>
+
+                <div class="book-info">
+                    <h3>@livro.Titulo</h3>
+                    <p><strong>Quantidade de páginas:</strong> @livro.QuantidadePaginas</p>
+                    <p><strong>Descrição:</strong> @livro.Descricao</p>
+
+                    <a asp-controller="Livros"
+                       asp-action="Details"
+                       asp-route-id="@livro.Id">
+                        Ver detalhes do livro
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

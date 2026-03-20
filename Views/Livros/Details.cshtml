@@ -1,0 +1,47 @@
+@model Biblioteca.Models.Livro
+
+<div class="top-banner top-banner-internal">
+    Conheça mais sobre esta obra
+</div>
+
+<div class="title-bar title-bar-internal">
+    <span>@Model.Titulo</span>
+</div>
+
+<div class="internal-area">
+    <div class="detail-layout">
+        <div class="detail-cover">
+            @if (!string.IsNullOrEmpty(Model.CapaUrl))
+            {
+                <img src="@Model.CapaUrl" alt="Capa do livro @Model.Titulo" />
+            }
+            else
+            {
+                <span>Imagem<br />Capa</span>
+            }
+        </div>
+
+        <div class="detail-text">
+            <p>
+                <strong>Autor:</strong>
+                <a asp-controller="Autores"
+                   asp-action="Details"
+                   asp-route-id="@Model.AutorId">
+                    @Model.Autor?.Nome
+                </a>
+            </p>
+
+            <p><strong>Quantidade de páginas:</strong> @Model.QuantidadePaginas</p>
+            <p><strong>Ano de publicação:</strong> @Model.AnoPublicacao</p>
+            <p><strong>Resumo:</strong> @Model.Descricao</p>
+            @if (!string.IsNullOrEmpty(Model.PdfUrl))
+            {
+                <p><strong>PDF:</strong>
+                <a href="@Model.PdfUrl" target="_blank" rel="noopener noreferrer">
+                    Clique aqui para conferir o PDF @Model.Titulo
+                </a>
+            </p>
+            }
+        </div>
+    </div>
+</div>

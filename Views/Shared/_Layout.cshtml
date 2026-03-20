@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Biblioteca Virtual</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-top">
+                <h1>Biblioteca<br />Virtual</h1>
+            </div>
+
+            <div class="sidebar-menu">
+                <a asp-controller="Home" asp-action="Index">HOME</a>
+            </div>
+        </aside>
+
+        <main class="content">
+            @RenderBody()
+        </main>
+    </div>
+</body>
+</html>
